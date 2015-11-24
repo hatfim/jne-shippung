@@ -72,4 +72,6 @@ function run_woocommerce_indonesia_shipping() {
 	$plugin->run();
 
 }
-run_woocommerce_indonesia_shipping();
+if (in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) )) {
+    run_woocommerce_indonesia_shipping();
+}

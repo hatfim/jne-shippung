@@ -96,6 +96,7 @@ class Woocommerce_Indonesia_Shipping {
 	 */
 	private function load_dependencies() {
 
+
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
@@ -112,6 +113,7 @@ class Woocommerce_Indonesia_Shipping {
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woocommerce-indonesia-shipping-admin.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woocommerce-indonesia-shipping-method.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -213,4 +215,15 @@ class Woocommerce_Indonesia_Shipping {
 		return $this->version;
 	}
 
+    /**
+     * WC Detection
+     */
+    public static function is_woocommerce_active() {
+        $plugin_dependencies = new WC_Dependencies();
+        return $plugin_dependencies->woocommerce_active_check();
+    }
+
 }
+
+
+
