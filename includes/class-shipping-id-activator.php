@@ -30,6 +30,17 @@ class Shipping_Id_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
+        /**
+         * Setup data transiet from raja ongkir
+         *
+         * Long Description.
+         *
+         * @since    1.0.0
+         */
+        $province = include( plugin_dir_path( dirname( __FILE__ ) ) . 'admin/includes/data-province.php' );
+        set_transient( 'shipping_id_province', $province, 3153600000 );
+        $city = include( plugin_dir_path( dirname( __FILE__ ) ) . 'admin/includes/data-city.php' );
+        set_transient( 'shipping_id_city', $city, 3153600000 );
 
 	}
 

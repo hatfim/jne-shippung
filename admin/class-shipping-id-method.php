@@ -36,17 +36,10 @@ class WC_Shipping_ID extends WC_Shipping_Method {
         $this->enabled          = isset( $this->settings['enabled'] ) ? $this->settings['enabled'] : $this->enabled;
         $this->title            = isset( $this->settings['title'] ) ? $this->settings['title'] : $this->method_title;
         $this->api_key          = isset( $this->settings['api_key'] ) ? $this->settings['api_key'] : '';
-        $this->origin_province  = isset( $this->settings['origin_province'] ) ? $this->settings['origin_province'] : '';
         $this->origin_city      = isset( $this->settings['origin_city'] ) ? $this->settings['origin_city'] : '';
-        $this->origin_city      = isset( $this->settings['min_weight'] ) ? $this->settings['min_weight'] : 1;
-        $this->custom_services   = isset( $this->settings['services'] ) ? $this->settings['services'] : array();
+        $this->min_weight       = isset( $this->settings['min_weight'] ) ? $this->settings['min_weight'] : 1;
+        $this->custom_services  = isset( $this->settings['services'] ) ? $this->settings['services'] : array();
 
-        if ( false === $this->province && $this->api_key ) {
-            $this->get_province();
-        }
-        if ( false === $this->city && $this->api_key ) {
-            $this->get_city();
-        }
 
         // Save settings in admin if you have any defined
         add_action( 'woocommerce_update_options_shipping_' . $this->id, array( $this, 'process_admin_options' ) );
@@ -133,32 +126,6 @@ class WC_Shipping_ID extends WC_Shipping_Method {
         return $services;
     }
 
-    /**
-     * get_province
-     *
-     * @access private
-     * @param mixed $key
-     * @return void
-     */
-    private function get_province(){
-        $args = array(
-            'timeout'     => 30,
-            'headers'     => array(
-                'key'           => $this->api_key,
-                'content-type'  => 'application/x-www-form-urlencoded'
-            )
-        );
-        $response = wp_remote_get( 'http://api.rajaongkir.com/starter/province', $args);
-        if ( is_wp_error( $response ) ) {
-            return;
-        }
-        $data = json_decode(wp_remote_retrieve_body( $response ));
-        $province = array();
-        foreach($data->rajaongkir->results as $key => $value){
-            $province[$value->province_id] = $value->province;
-        }
-        set_transient( $this->id . '_province', $province, 3153600000 );
-    }
 
     /**
      * options_city
@@ -176,33 +143,7 @@ class WC_Shipping_ID extends WC_Shipping_Method {
         return $options;
     }
 
-    /**
-     * get_city
-     *
-     * @access private
-     * @param mixed $key
-     * @return array
-     */
-    private function get_city(){
-        $args = array(
-            'timeout'     => 30,
-            'headers'     => array(
-                'key'           => $this->api_key,
-                'content-type'  => 'application/x-www-form-urlencoded'
-            )
-        );
-        $response = wp_remote_get( 'http://api.rajaongkir.com/starter/city', $args);
-        if ( is_wp_error( $response ) ) {
-            return;
-        }
-        $data = json_decode(wp_remote_retrieve_body( $response ));
-        $city = array();
-        foreach($data->rajaongkir->results as $key => $value){
-            $city[$value->city_id]['province_id'] = $value->province_id;
-            $city[$value->city_id]['name'] = $value->type . ' ' . $value->city_name;
-        }
-        set_transient( $this->id . '_city', $city, 3153600000 );
-    }
+
 }
 
 

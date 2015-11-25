@@ -100,4 +100,14 @@ class Shipping_Id_Public {
 
 	}
 
+    /**
+     * Change woocommerce state id  to rajangokir state id
+     *
+     * @since    1.0.0
+     */
+    public function shipping_id_states( $states ) {
+        print_r($states['ID']);
+
+    }
+
 }

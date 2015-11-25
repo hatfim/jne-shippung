@@ -1,0 +1,41 @@
+<?php
+/**
+ * Rajaongkir Province Data
+ */
+
+return array(
+	1 => __( 'Bali', 'shipping-id' ),
+	2 => __( 'Bangka Belitung', 'shipping-id' ),
+	3 => __( 'Banten', 'shipping-id' ),
+	4 => __( 'Bengkulu', 'shipping-id' ),
+	5 => __( 'DI Yogyakarta', 'shipping-id' ),
+	6 => __( 'DKI Jakarta', 'shipping-id' ),
+	7 => __( 'Gorontalo', 'shipping-id' ),
+	8 => __( 'Jambi', 'shipping-id' ),
+	9 => __( 'Jawa Barat', 'shipping-id' ),
+	10 => __( 'Jawa Tengah', 'shipping-id' ),
+	11 => __( 'Jawa Timur', 'shipping-id' ),
+	12 => __( 'Kalimantan Barat', 'shipping-id' ),
+	13 => __( 'Kalimantan Selatan', 'shipping-id' ),
+	14 => __( 'Kalimantan Tengah', 'shipping-id' ),
+	15 => __( 'Kalimantan Timur', 'shipping-id' ),
+	16 => __( 'Kalimantan Utara', 'shipping-id' ),
+	17 => __( 'Kepulauan Riau', 'shipping-id' ),
+	18 => __( 'Lampung', 'shipping-id' ),
+	19 => __( 'Maluku', 'shipping-id' ),
+	20 => __( 'Maluku Utara', 'shipping-id' ),
+	21 => __( 'Nanggroe Aceh Darussalam (NAD)', 'shipping-id' ),
+	22 => __( 'Nusa Tenggara Barat (NTB)', 'shipping-id' ),
+	23 => __( 'Nusa Tenggara Timur (NTT)', 'shipping-id' ),
+	24 => __( 'Papua', 'shipping-id' ),
+	25 => __( 'Papua Barat', 'shipping-id' ),
+	26 => __( 'Riau', 'shipping-id' ),
+	27 => __( 'Sulawesi Barat', 'shipping-id' ),
+	28 => __( 'Sulawesi Selatan', 'shipping-id' ),
+	29 => __( 'Sulawesi Tengah', 'shipping-id' ),
+	30 => __( 'Sulawesi Tenggara', 'shipping-id' ),
+	31 => __( 'Sulawesi Utara', 'shipping-id' ),
+	32 => __( 'Sumatera Barat', 'shipping-id' ),
+	33 => __( 'Sumatera Selatan', 'shipping-id' ),
+	34 => __( 'Sumatera Utara', 'shipping-id' ),
+);

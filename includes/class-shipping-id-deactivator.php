@@ -30,7 +30,9 @@ class Shipping_Id_Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
+        global $wpdb;
 
+        $wpdb->query( "DELETE FROM `$wpdb->options` WHERE `option_name` LIKE ('_transient_shipping_id_%') OR `option_name` LIKE ('_transient_timeout_shipping_id_%')" );
 	}
 
 }
