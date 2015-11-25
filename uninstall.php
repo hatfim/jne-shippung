@@ -22,7 +22,7 @@
  * @link       hatfim.ydniw.com
  * @since      1.0.0
  *
- * @package    Woocommerce_Indonesia_Shipping
+ * @package    Shipping_Id
  */
 
 // If uninstall not called from WordPress, then exit.

@@ -9,8 +9,8 @@
  * @link       hatfim.ydniw.com
  * @since      1.0.0
  *
- * @package    Woocommerce_Indonesia_Shipping
- * @subpackage Woocommerce_Indonesia_Shipping/includes
+ * @package    Shipping_Id
+ * @subpackage Shipping_Id/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Woocommerce_Indonesia_Shipping
- * @subpackage Woocommerce_Indonesia_Shipping/includes
+ * @package    Shipping_Id
+ * @subpackage Shipping_Id/includes
  * @author     Hatfim Ydniw <hatfim@ydniw.com>
  */
-class Woocommerce_Indonesia_Shipping_i18n {
+class Shipping_Id_i18n {
 
 	/**
 	 * The domain specified for this plugin.

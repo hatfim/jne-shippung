@@ -6,8 +6,8 @@
  * @link       hatfim.ydniw.com
  * @since      1.0.0
  *
- * @package    Woocommerce_Indonesia_Shipping
- * @subpackage Woocommerce_Indonesia_Shipping/includes
+ * @package    Shipping_Id
+ * @subpackage Shipping_Id/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Woocommerce_Indonesia_Shipping
- * @subpackage Woocommerce_Indonesia_Shipping/includes
+ * @package    Shipping_Id
+ * @subpackage Shipping_Id/includes
  * @author     Hatfim Ydniw <hatfim@ydniw.com>
  */
-class Woocommerce_Indonesia_Shipping_Loader {
+class Shipping_Id_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

@@ -9,8 +9,8 @@
  * @link       hatfim.ydniw.com
  * @since      1.0.0
  *
- * @package    Woocommerce_Indonesia_Shipping
- * @subpackage Woocommerce_Indonesia_Shipping/includes
+ * @package    Shipping_Id
+ * @subpackage Shipping_Id/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Woocommerce_Indonesia_Shipping
- * @subpackage Woocommerce_Indonesia_Shipping/includes
+ * @package    Shipping_Id
+ * @subpackage Shipping_Id/includes
  * @author     Hatfim Ydniw <hatfim@ydniw.com>
  */
-class Woocommerce_Indonesia_Shipping {
+class Shipping_Id {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class Woocommerce_Indonesia_Shipping {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Woocommerce_Indonesia_Shipping_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Shipping_Id_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -68,7 +68,7 @@ class Woocommerce_Indonesia_Shipping {
 	 */
 	public function __construct() {
 
-		$this->plugin_name = 'woocommerce-indonesia-shipping';
+		$this->plugin_name = 'shipping-id';
 		$this->version = '1.0.0';
 
 		$this->load_dependencies();
@@ -83,10 +83,10 @@ class Woocommerce_Indonesia_Shipping {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Woocommerce_Indonesia_Shipping_Loader. Orchestrates the hooks of the plugin.
-	 * - Woocommerce_Indonesia_Shipping_i18n. Defines internationalization functionality.
-	 * - Woocommerce_Indonesia_Shipping_Admin. Defines all hooks for the admin area.
-	 * - Woocommerce_Indonesia_Shipping_Public. Defines all hooks for the public side of the site.
+	 * - Shipping_Id_Loader. Orchestrates the hooks of the plugin.
+	 * - Shipping_Id_i18n. Defines internationalization functionality.
+	 * - Shipping_Id_Admin. Defines all hooks for the admin area.
+	 * - Shipping_Id_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -96,38 +96,37 @@ class Woocommerce_Indonesia_Shipping {
 	 */
 	private function load_dependencies() {
 
-
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-indonesia-shipping-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-shipping-id-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-indonesia-shipping-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-shipping-id-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woocommerce-indonesia-shipping-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-shipping-id-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-woocommerce-indonesia-shipping-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-shipping-id-public.php';
 
-		$this->loader = new Woocommerce_Indonesia_Shipping_Loader();
+		$this->loader = new Shipping_Id_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Woocommerce_Indonesia_Shipping_i18n class in order to set the domain and to register the hook
+	 * Uses the Shipping_Id_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -135,7 +134,7 @@ class Woocommerce_Indonesia_Shipping {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Woocommerce_Indonesia_Shipping_i18n();
+		$plugin_i18n = new Shipping_Id_i18n();
 		$plugin_i18n->set_domain( $this->get_plugin_name() );
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
@@ -151,11 +150,11 @@ class Woocommerce_Indonesia_Shipping {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Woocommerce_Indonesia_Shipping_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Shipping_Id_Admin( $this->get_plugin_name(), $this->get_version() );
 
-        $this->loader->add_action( 'init', $plugin_admin, 'init' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+        $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+        $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+        $this->loader->add_action( 'woocommerce_shipping_init', $plugin_admin, 'init_class_shipping_id' );
         $this->loader->add_filter( 'woocommerce_shipping_methods', $plugin_admin, 'add_method' );
 
 	}
@@ -169,7 +168,7 @@ class Woocommerce_Indonesia_Shipping {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Woocommerce_Indonesia_Shipping_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Shipping_Id_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -200,7 +199,7 @@ class Woocommerce_Indonesia_Shipping {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Woocommerce_Indonesia_Shipping_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Shipping_Id_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;
@@ -216,15 +215,4 @@ class Woocommerce_Indonesia_Shipping {
 		return $this->version;
 	}
 
-    /**
-     * WC Detection
-     */
-    public static function is_woocommerce_active() {
-        $plugin_dependencies = new WC_Dependencies();
-        return $plugin_dependencies->woocommerce_active_check();
-    }
-
 }
-
-
-

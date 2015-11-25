@@ -8,8 +8,8 @@
  * @link       hatfim.ydniw.com
  * @since      1.0.0
  *
- * @package    Woocommerce_Indonesia_Shipping
- * @subpackage Woocommerce_Indonesia_Shipping/public/partials
+ * @package    Shipping_Id
+ * @subpackage Shipping_Id/public/partials
  */
 ?>
 
