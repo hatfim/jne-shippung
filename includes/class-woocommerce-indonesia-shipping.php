@@ -113,7 +113,6 @@ class Woocommerce_Indonesia_Shipping {
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woocommerce-indonesia-shipping-admin.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woocommerce-indonesia-shipping-method.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -154,8 +153,10 @@ class Woocommerce_Indonesia_Shipping {
 
 		$plugin_admin = new Woocommerce_Indonesia_Shipping_Admin( $this->get_plugin_name(), $this->get_version() );
 
+        $this->loader->add_action( 'init', $plugin_admin, 'init' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+        $this->loader->add_filter( 'woocommerce_shipping_methods', $plugin_admin, 'add_method' );
 
 	}
 

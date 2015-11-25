@@ -85,8 +85,6 @@ class Woocommerce_Indonesia_Shipping_Admin {
 	public function enqueue_scripts() {
 
 		/**
-		 * This function is provided for demonstration purposes only.
-		 *
 		 * An instance of this class should be passed to the run() function
 		 * defined in Woocommerce_Indonesia_Shipping_Loader as all of the hooks are defined
 		 * in that particular class.
@@ -99,5 +97,28 @@ class Woocommerce_Indonesia_Shipping_Admin {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/woocommerce-indonesia-shipping-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
+
+    /**
+     * An instance of this class should be passed to the run() function
+     * defined in Woocommerce_Indonesia_Shipping_Loader as all of the hooks are defined
+     * in that particular class.
+     *
+     * The Woocommerce_Indonesia_Shipping_Loader will then create the relationship
+     * between the defined hooks and the functions defined in this
+     * class.
+     */
+
+    public function init(){
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woocommerce-indonesia-shipping-method.php';
+
+    }
+
+        /**
+         * Add method to WC
+         */
+        public function add_method( $methods ) {
+            $methods[] = 'WC_ID_Shipping';
+            return $methods;
+        }
 
 }

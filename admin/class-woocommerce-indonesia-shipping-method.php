@@ -133,7 +133,13 @@ function wc_id_shipping() {
                 return $services;
             }
 
-
+            /**
+             * get_province
+             *
+             * @access private
+             * @param mixed $key
+             * @return void
+             */
             private function get_province(){
                 $args = array(
                     'timeout'     => 30,
@@ -154,6 +160,13 @@ function wc_id_shipping() {
                 set_transient( $this->id . '_province', $province, 3153600000 );
             }
 
+            /**
+             * options_city
+             *
+             * @access private
+             * @param mixed $key
+             * @return array
+             */
             private function options_city(){
                 $options = array();
 
@@ -163,6 +176,13 @@ function wc_id_shipping() {
                 return $options;
             }
 
+            /**
+             * get_city
+             *
+             * @access private
+             * @param mixed $key
+             * @return array
+             */
             private function get_city(){
                 $args = array(
                     'timeout'     => 30,
@@ -191,9 +211,3 @@ add_action( 'woocommerce_shipping_init', 'wc_id_shipping' );
 
 
 
-function add_wc_id_shipping_method( $methods ) {
-        $methods[] = 'WC_ID_Shipping';
-        return $methods;
-}
-
-add_filter( 'woocommerce_shipping_methods', 'add_wc_id_shipping_method' );
